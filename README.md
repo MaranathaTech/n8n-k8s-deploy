@@ -1,6 +1,6 @@
 # n8n Kubernetes Deployment
 
-This directory contains Kubernetes manifests to deploy n8n on Rancher Desktop.
+This repository contains Kubernetes manifests to deploy n8n on Rancher Desktop.
 
 ## Prerequisites
 
@@ -14,7 +14,6 @@ This directory contains Kubernetes manifests to deploy n8n on Rancher Desktop.
 Use the automated deploy script:
 
 ```bash
-cd k8s
 ./deploy.sh
 ```
 
@@ -32,14 +31,14 @@ If you prefer to deploy manually:
 Apply all manifests:
 
 ```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
 ```
 
 Or apply everything at once:
 
 ```bash
-kubectl apply -f k8s/
+kubectl apply -f .
 ```
 
 ### 2. Verify Deployment
@@ -88,7 +87,7 @@ The deployment includes:
 
 ### Environment Variables
 
-Edit `k8s/deployment.yaml` to customize environment variables:
+Edit `deployment.yaml` to customize environment variables:
 
 - `N8N_HOST`: Hostname (default: localhost)
 - `N8N_PORT`: Internal port (default: 5678)
@@ -97,7 +96,7 @@ Edit `k8s/deployment.yaml` to customize environment variables:
 
 ### Storage
 
-To change storage size, edit the PVC in `k8s/deployment.yaml`:
+To change storage size, edit the PVC in `deployment.yaml`:
 
 ```yaml
 resources:
@@ -107,7 +106,7 @@ resources:
 
 ### Port
 
-To change the external port, edit the NodePort in `k8s/service.yaml`:
+To change the external port, edit the NodePort in `service.yaml`:
 
 ```yaml
 nodePort: 30678  # Change to any port between 30000-32767
@@ -118,7 +117,7 @@ nodePort: 30678  # Change to any port between 30000-32767
 To remove the deployment:
 
 ```bash
-kubectl delete -f k8s/
+kubectl delete -f .
 ```
 
 To completely remove including data:
